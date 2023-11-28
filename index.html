@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hotpotGame</title>
+  <style>
+    *,
+    *::before,
+    *::after {
+      /* 寫最前面 */
+      margin: 0;
+      padding: 0;
+      outline: 1px solid rgb(120, 4, 4);
+      box-sizing: border-box;
+      /* letter-spacing: 1px; */
+    }
+
+    body {
+      background-color: black;
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+
+    .container {
+      width: 100vw;
+      height: 100vh;
+      background-color: antiquewhite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .window {
+      width: 1000px;
+      height: 700px;
+      background-color: black;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .left {
+      width: 300px;
+      height: 700px;
+      /* background-color: aqua; */
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .right {
+      width: 700px;
+      height: 700px;
+      /* background-color: rgb(21, 0, 255); */
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .logo {
+      width: 250px;
+      height: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="window">
+      <div class="left">
+        <div class="logo"></div>
+        <div class="calList"></div>
+      </div>
+      <div class="right"></div>
+    </div>
+  </div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
+    integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
+    crossorigin='anonymous'></script>
+  <script></script>
+</body>
+
+</html>
