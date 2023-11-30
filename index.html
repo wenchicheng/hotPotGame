@@ -166,10 +166,12 @@
     $('#btn-start').click(function () {
       // 停用按鈕
       $(this).attr('disabled', true)
+      $('btn-start', 'btn-Instructions').click
+      // ----------------------------------------開始遊戲後，隱藏按鈕
       // 重設
       score = 0
       $('#text-score').text(score)
-      time = 60
+      time = 10
       $('#text-time').text(time)
       // 因為 setInterval 裡的 this 會指向 window，而不是點到的按鈕，所以先把 this 存起來
       const _this = this
@@ -180,13 +182,15 @@
         $('#text-time').text(time)
         // 隨機 1~10
         const random = Math.ceil(Math.random() * 10)
-        // 如果隨機數字大於 5 且番茄的數量小於 5
-        if (random > 5 && $('.tomato').length < 5) {
+        // 如果隨機數字大於 2 且番茄的數量小於 2
+        if (random > 2 && $('.tomato').length < 2) {
           // 隨機位置
           const top = Math.round(Math.random() * 100) + '%'
           const left = Math.round(Math.random() * 100) + '%'
+          const deg = Math.round(Math.random() * 360) + 'deg'
+          // ---------------------------------------------為什麼不會旋轉????????????
           // 產生關東煮
-          const tomato = $(`<img src="image/tomato_red.png" class="tomato" style="top: ${top}; left: ${left}">`)
+          const tomato = $(`<img src="image/tomato_red.png" class="tomato" style="top: ${top}; left: ${left}"; transsform="rotate:${deg}">`)
           $('#game-window').append(tomato)
           movetomato(tomato)
         }
@@ -202,41 +206,43 @@
           // 清空遊戲區域
           // .empty() 會把裡面的子元素都刪掉
           $('#game-window').empty()
+          $('btn-start', 'btn-Instructions').show()
+          // ---------------------------------------時間到之後出現這兩個按鈕
 
-          if (score > hs.score) {
-            Swal.fire({
-              icon: 'success',
-              title: '時間到',
-              text: `最高分，你得到 ${score} 分`,
-              // input 的 type
-              input: 'text',
-              // input 的其他屬性
-              inputAttributes: {
-                required: true
-              },
-              inputPlaceholder: '請輸入你的名字',
-              // 驗證錯誤時顯示的文字
-              validationMessage: '請輸入你的名字',
-              // 不允許點擊外面關閉對話框
-              allowOutsideClick: false,
-              // 不允許按 ESC 關閉對話框
-              allowEscapeKey: false
-            }).then(function (result) {
-              hs.score = score
-              hs.name = result.value
-              $('#text-hsname').text(hs.name)
-              $('#text-hsscore').text(hs.score)
-              // localStorage.setItem(名稱, 文字)
-              // localStorage.名稱 = 文字
-              localStorage.hs = JSON.stringify(hs)
-            })
-          } else {
-            Swal.fire({
-              icon: 'info',
-              title: '時間到',
-              text: `你得到 ${score} 分`
-            })
-          }
+          // if (score > hs.score) {
+          //   Swal.fire({
+          //     icon: 'success',
+          //     title: '時間到',
+          //     text: `最高分，你得到 ${score} 卡洛里`,
+          //     // input 的 type
+          //     input: 'text',
+          //     // input 的其他屬性
+          //     inputAttributes: {
+          //       required: true
+          //     },
+          //     inputPlaceholder: '請輸入你的名字',
+          //     // 驗證錯誤時顯示的文字
+          //     validationMessage: '請輸入你的名字',
+          //     // 不允許點擊外面關閉對話框
+          //     allowOutsideClick: false,
+          //     // 不允許按 ESC 關閉對話框
+          //     allowEscapeKey: false
+          //   }).then(function (result) {
+          //     hs.score = score
+          //     hs.name = result.value
+          //     $('#text-hsname').text(hs.name)
+          //     $('#text-hsscore').text(hs.score)
+          //     // localStorage.setItem(名稱, 文字)
+          //     // localStorage.名稱 = 文字
+          //     localStorage.hs = JSON.stringify(hs)
+          //   })
+          // } else {
+          //   Swal.fire({
+          //     icon: 'info',
+          //     title: '時間到',
+          //     text: `你得到 ${score} 卡洛里`
+          //   })
+          // }
         }
       }, 1000)
     })
@@ -244,7 +250,7 @@
     // 點擊
     $('#game-window').on('click', '.tomato', function () {
       $(this).stop()
-      $(this).attr('src', 'blood.png')
+      $(this).attr('src', './image/ebi_aka.png')
       $(this).removeClass('tomato').addClass('blood')
       score++
       $('#text-score').text(score)
