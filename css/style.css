@@ -1,0 +1,107 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  /* outline: 1px solid rgb(120, 4, 4); */
+  box-sizing: border-box;
+  /* letter-spacing: 1px; */
+}
+
+body {
+  background-color: black;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-color: antiquewhite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.window {
+  width: 1000px;
+  height: 700px;
+  /* background-color: black; */
+  /* background-image: url(../image/pattern_gray.svg.svg); */
+  background-repeat: repeat;
+  background-size: 200px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.left {
+  width: 250px;
+  height: 700px;
+  /* background-color: aqua; */
+  /* display: flex;
+      flex-direction: row; */
+}
+
+.right {
+  width: 750px;
+  height: 700px;
+  /* background-color: rgb(21, 0, 255); */
+  display: flex;
+  justify-content: flex-start;
+}
+
+.logo {
+  width: 250px;
+  height: 100px;
+  background-color: antiquewhite;
+  background-image: url(../image/logo.png);
+}
+
+.calList {
+  width: 250px;
+  height: 500px;
+  background-color: lightgoldenrodyellow;
+}
+
+.footer {
+  width: 250px;
+  height: 100px;
+  background-color: lightcoral;
+}
+
+#game-window {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  background-image: url(../image/hotpot.svg);
+  cursor: url(../image/cooking_yugiri_tebo.png)35 70, auto;
+  /* 座標 35 70  自動切換樣式 auto */
+}
+
+#game-window>img {
+  height: 100px;
+  position: absolute;
+  /* 不能選取 */
+  user-select: none;
+  /* 不能拖曳 */
+  -webkit-user-drag: none;
+}
+
+#btn-start,
+#btn-Instructions {
+  width: 300px;
+  height: 80px;
+  font-size: 50px;
+  font-weight: 600;
+  margin: 20px 0;
+}
+
+.clicked {
+  /* 忽略點擊事件 */
+  pointer-events: none;
+  opacity: 10%;
+}
