@@ -5,108 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>hotpotGame</title>
-  <style>
-    *,
-    *::before,
-    *::after {
-      /* 寫最前面 */
-      margin: 0;
-      padding: 0;
-      outline: 1px solid rgb(120, 4, 4);
-      box-sizing: border-box;
-      /* letter-spacing: 1px; */
-    }
+  <!-- 自己的外部樣式表 -->
+  <link rel="stylesheet" href="./css/style.css">
 
-    body {
-      background-color: black;
-      font-family: 'Noto Sans TC', sans-serif;
-    }
-
-    .container {
-      width: 100vw;
-      height: 100vh;
-      background-color: antiquewhite;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .window {
-      width: 1000px;
-      height: 700px;
-      background-color: black;
-      display: flex;
-      justify-content: flex-start;
-    }
-
-    .left {
-      width: 300px;
-      height: 700px;
-      /* background-color: aqua; */
-      /* display: flex;
-      flex-direction: row; */
-    }
-
-    .right {
-      width: 700px;
-      height: 700px;
-      /* background-color: rgb(21, 0, 255); */
-      display: flex;
-      justify-content: flex-start;
-    }
-
-    .logo {
-      width: 300px;
-      height: 100px;
-      background-color: aquamarine;
-    }
-
-    .calList {
-      width: 300px;
-      height: 500px;
-      background-color: lightgoldenrodyellow;
-    }
-
-    .footer {
-      width: 300px;
-      height: 100px;
-      background-color: lightcoral;
-    }
-
-    #game-window {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      position: relative;
-    }
-
-    #game-window>img {
-      height: 100px;
-      position: absolute;
-      /* 不能選取 */
-      user-select: none;
-      /* 不能拖曳 */
-      -webkit-user-drag: none;
-    }
-
-    #btn-start,
-    #btn-Instructions {
-      width: 300px;
-      height: 80px;
-      font-size: 50px;
-      font-weight: 600;
-      margin: 20px 0;
-    }
-
-    .blood {
-      /* 忽略點擊事件 */
-      pointer-events: none;
-    }
-  </style>
 </head>
 
 <body>
@@ -123,7 +24,7 @@
         <div class="footer">
           <p>分數: <span id="text-score">0</span></p>
           <p>剩餘: <span id="text-time">0</span>秒</p>
-          <p>最高分玩家: <span id="text-hsname">-</span></p>
+          <!-- <p>最高分玩家: <span id="text-hsname">-</span></p> -->
           <p>最高分分數: <span id="text-hsscore">0</span></p>
         </div>
       </div>
@@ -133,16 +34,24 @@
 
         <!-- 右區遊戲主畫面------------------- -->
         <div id="game-window">
+          <!-- <img id="" src="./image/hotpot.svg"> -->
           <input type="button" value="開始" id="btn-start">
           <input type="button" value="說明" id="btn-Instructions">
         </div>
       </div>
     </div>
   </div>
+  <!-- jquery -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
     integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
     crossorigin='anonymous'></script>
+  <!-- sweet alert -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.1/sweetalert2.all.min.js'
+    integrity='sha512-1SVc8wK7Y/XRAKRKfP09ILQmzJGwqq6m66x6mWa7r36j+/fa+3kz46s8kvELsGc52yo1as48nneFic7BZKMu8Q=='
+    crossorigin='anonymous'></script>
+
   <script>
+
     // 目前分數
     let score = 0
     // 剩餘秒數
@@ -154,20 +63,23 @@
       name: '-',
       score: 0
     }
+
+    // 判斷 data 最高分紀錄
     if (localStorage.hs) {
       const data = JSON.parse(localStorage.hs)
-      hs.name = data.name
+      // hs.name = data.name
       hs.score = data.score
-      $('#text-hsname').text(hs.name)
+      // $('#text-hsname').text(hs.name)
       $('#text-hsscore').text(hs.score)
     }
 
-    // 點擊開始
+    // 點擊開始----------------------------------------------
+
     $('#btn-start').click(function () {
       // 停用按鈕
       $(this).attr('disabled', true)
       $('btn-start', 'btn-Instructions').click
-      // ----------------------------------------開始遊戲後，隱藏按鈕
+      // ----------------------------------------開始遊戲後，隱藏按鈕??????
       // 重設
       score = 0
       $('#text-score').text(score)
@@ -180,25 +92,66 @@
         // 倒數
         time--
         $('#text-time').text(time)
+
+
+        // 產生火鍋料----------------------------------------
         // 隨機 1~10
         const random = Math.ceil(Math.random() * 10)
         // 如果隨機數字大於 2 且番茄的數量小於 2
-        if (random > 2 && $('.tomato').length < 2) {
+        if (random > 6 && $('.tomato,.daikon,.ebi,.atsuage,.chikuwa,.shitake').length < 6) {
           // 隨機位置
           const top = Math.round(Math.random() * 100) + '%'
           const left = Math.round(Math.random() * 100) + '%'
-          const deg = Math.round(Math.random() * 360) + 'deg'
-          // ---------------------------------------------為什麼不會旋轉????????????
-          // 產生關東煮
-          const tomato = $(`<img src="image/tomato_red.png" class="tomato" style="top: ${top}; left: ${left}"; transsform="rotate:${deg}">`)
-          $('#game-window').append(tomato)
-          movetomato(tomato)
+          const deg = Math.round(Math.random() * 90) + 'deg'
+
+          // 宣告-------
+          // const tomato = $(`<img src="image/tomato_red.png" class="tomato food" style="top: ${top}; left: ${left}">`)
+          // 番茄
+          const tomato =
+            $(`<img src="image/tomato_red.png" 
+          class="tomato food" style="top: ${top}; left: ${left}; 
+          transform: rotate(${deg});">`);
+
+          // 蘿蔔
+          const daikon =
+            $(`<img src="image/daikon.png" 
+          class="daikon food" style="top: ${top}; left: ${left}; 
+          transform: rotate(${deg});">`);
+
+          // 蝦子
+          const ebi =
+            $(`<img src="image/ebi.png" 
+          class="ebi food" style="top: ${top}; left: ${left}; 
+          transform: rotate(${deg});">`);
+
+          // 油豆腐
+          const atsuage =
+            $(`<img src="image/atsuage.png" 
+          class="atsuage food" style="top: ${top}; left: ${left}; 
+          transform: rotate(${deg});">`);
+
+          // 竹輪
+          const chikuwa =
+            $(`<img src="image/chikuwa.png" 
+          class="chikuwa food" style="top: ${top}; left: ${left}; 
+          transform: rotate(${deg});">`);
+
+          // 香菇
+          const shitake =
+            $(`<img src="image/shitake.png" 
+          class="shitake food" style="top: ${top}; left: ${left}; 
+          transform: rotate(${deg});">`);
+
+
+
+          $('#game-window').append(tomato, daikon, ebi, atsuage, chikuwa, shitake);
+          move(tomato, daikon, ebi, atsuage, chikuwa, shitake);
         }
 
 
 
 
-        // 如果時間到了
+        // 如果時間到了----------------------------------------------
         if (time === 0) {
           clearInterval(timer)
           // 重新啟用按鈕
@@ -206,64 +159,66 @@
           // 清空遊戲區域
           // .empty() 會把裡面的子元素都刪掉
           $('#game-window').empty()
-          $('btn-start', 'btn-Instructions').show()
-          // ---------------------------------------時間到之後出現這兩個按鈕
+          // $('btn-start', 'btn-Instructions').show()
 
-          // if (score > hs.score) {
-          //   Swal.fire({
-          //     icon: 'success',
-          //     title: '時間到',
-          //     text: `最高分，你得到 ${score} 卡洛里`,
-          //     // input 的 type
-          //     input: 'text',
-          //     // input 的其他屬性
-          //     inputAttributes: {
-          //       required: true
-          //     },
-          //     inputPlaceholder: '請輸入你的名字',
-          //     // 驗證錯誤時顯示的文字
-          //     validationMessage: '請輸入你的名字',
-          //     // 不允許點擊外面關閉對話框
-          //     allowOutsideClick: false,
-          //     // 不允許按 ESC 關閉對話框
-          //     allowEscapeKey: false
-          //   }).then(function (result) {
-          //     hs.score = score
-          //     hs.name = result.value
-          //     $('#text-hsname').text(hs.name)
-          //     $('#text-hsscore').text(hs.score)
-          //     // localStorage.setItem(名稱, 文字)
-          //     // localStorage.名稱 = 文字
-          //     localStorage.hs = JSON.stringify(hs)
-          //   })
-          // } else {
-          //   Swal.fire({
-          //     icon: 'info',
-          //     title: '時間到',
-          //     text: `你得到 ${score} 卡洛里`
-          //   })
-          // }
+          Swal.fire({
+            title: "時間到",
+            text: `獲得 ${score} 卡洛里`,
+            imageUrl: "./image/soup_vegetable.png",
+            imageWidth: 400,
+            imageHeight: 361,
+            imageAlt: "嗨",
+            allowOutsideClick: false,
+            // 不允許點擊外面關閉對話框
+          }).then(function (result) {
+            hs.score = score
+            $('#text-hsscore').text(hs.score)
+
+            // localStorage.setItem(名稱, 文字)
+            // localStorage.名稱 = 文字
+            localStorage.hs = JSON.stringify(hs)
+          })
         }
       }, 1000)
     })
 
-    // 點擊
+    // 點擊----------------------------------------------
+
     $('#game-window').on('click', '.tomato', function () {
       $(this).stop()
-      $(this).attr('src', './image/ebi_aka.png')
-      $(this).removeClass('tomato').addClass('blood')
+      // $(this).attr('src', './image/ebi_aka.png')
+      $(this).removeClass('food').addClass('clicked')
       score++
       $('#text-score').text(score)
     })
 
-    function movetomato(tomato) {
+    // 點擊後停止動作 + 分數
+    $('#game-window').on('click', '.food', function () {
+      $(this).stop()
+      // $(this).attr('src', './image/ebi_aka.png')
+      $(this).removeClass('food').addClass('clicked')
+      score++
+      $('#text-score').text(score)
+    })
+
+
+
+
+
+    // $('#game-window').on('click', '.tomato', function () {
+    //   $(this).stop()
+    //   // $(this).attr('src', './image/ebi_aka.png')
+    //   $(this).removeClass('food').addClass('clicked')
+    //   score++
+    //   $('#text-score').text(score)
+    // })
+
+    function move(tomato) {
       // 隨機位置
       const top = Math.round(Math.random() * 100) + '%'
       const left = Math.round(Math.random() * 100) + '%'
       tomato.animate({ top, left }, 2000, function () {
-        blood.png
-        cursor.png
-        kodai_sacabambaspis.png(tomato)
+        move(tomato)
       })
     }
   </script>
