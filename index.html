@@ -13,7 +13,6 @@
 <body>
   <div class="container">
     <div class="window">
-
       <!-- 左區------------------- -->
       <div class="left">
         <!-- ＬＯＧＯ------------------- -->
@@ -28,10 +27,8 @@
           <p>最高分分數: <span id="text-hsscore">0</span></p>
         </div>
       </div>
-
       <!-- 右區------------------- -->
       <div class="right">
-
         <!-- 右區遊戲主畫面------------------- -->
         <div id="game-window">
           <!-- <img id="" src="./image/hotpot.svg"> -->
@@ -51,7 +48,6 @@
     crossorigin='anonymous'></script>
 
   <script>
-
     // 目前分數
     let score = 0
     // 剩餘秒數
@@ -77,13 +73,16 @@
 
     $('#btn-start').click(function () {
       // 停用按鈕
-      $(this).attr('disabled', true)
-      $('btn-start', 'btn-Instructions').click
-      // ----------------------------------------開始遊戲後，隱藏按鈕??????
+      $(this).attr('disabled', true);
+      $('#btn-Instructions').attr('disabled', true);
+
+      // 隱藏按鈕
+      $(this).hide();
+      $('#btn-Instructions').hide();
       // 重設
       score = 0
       $('#text-score').text(score)
-      time = 10
+      time = 60
       $('#text-time').text(time)
       // 因為 setInterval 裡的 this 會指向 window，而不是點到的按鈕，所以先把 this 存起來
       const _this = this
@@ -95,60 +94,111 @@
 
 
         // 產生火鍋料----------------------------------------
-        // 隨機 1~10
+        // 隨機數字 1~10 ，如果隨機數字大於 3 且番茄的數量小於 3
         const random = Math.ceil(Math.random() * 10)
-        // 如果隨機數字大於 2 且番茄的數量小於 2
-        if (random > 6 && $('.tomato,.daikon,.ebi,.atsuage,.chikuwa,.shitake').length < 6) {
+        if (random > 3 && $('.food').length < 10) {
+
           // 隨機位置
-          const top = Math.round(Math.random() * 100) + '%'
-          const left = Math.round(Math.random() * 100) + '%'
-          const deg = Math.round(Math.random() * 90) + 'deg'
+          const top = Math.round(Math.random() * 50) + '%'
+          const left = Math.round(Math.random() * 50) + '%'
+          const deg = Math.round(Math.random() * 30) + 'deg'
 
           // 宣告-------
           // const tomato = $(`<img src="image/tomato_red.png" class="tomato food" style="top: ${top}; left: ${left}">`)
           // 番茄
           const tomato =
             $(`<img src="image/tomato_red.png" 
-          class="tomato food" style="top: ${top}; left: ${left}; 
+          class="tomato food" style="top: ${top}; left: ${left}; width: 80px;height: auto;
           transform: rotate(${deg});">`);
 
           // 蘿蔔
           const daikon =
             $(`<img src="image/daikon.png" 
-          class="daikon food" style="top: ${top}; left: ${left}; 
+          class="daikon food" style="top: ${top}; left: ${left}; width: 70px;height: auto;
           transform: rotate(${deg});">`);
 
           // 蝦子
           const ebi =
             $(`<img src="image/ebi.png" 
-          class="ebi food" style="top: ${top}; left: ${left}; 
+          class="ebi food" style="top: ${top}; left: ${left}; width: 90px;height: auto;
           transform: rotate(${deg});">`);
 
           // 油豆腐
           const atsuage =
             $(`<img src="image/atsuage.png" 
-          class="atsuage food" style="top: ${top}; left: ${left}; 
+          class="atsuage food" style="top: ${top}; left: ${left}; width: 80px;height: auto;
           transform: rotate(${deg});">`);
 
           // 竹輪
           const chikuwa =
             $(`<img src="image/chikuwa.png" 
-          class="chikuwa food" style="top: ${top}; left: ${left}; 
+          class="chikuwa food" style="top: ${top}; left: ${left}; width: 80px;height: auto;
           transform: rotate(${deg});">`);
 
           // 香菇
           const shitake =
             $(`<img src="image/shitake.png" 
-          class="shitake food" style="top: ${top}; left: ${left}; 
+          class="shitake food" style="top: ${top}; left: ${left}; width: 90px;height: auto;
+          transform: rotate(${deg});">`);
+
+          // 魷魚圈
+          const ika =
+            $(`<img src="image/ika_ring.png" 
+          class="ika food" style="top: ${top}; left: ${left}; width: 90px;height: auto;
+          transform: rotate(${deg});">`);
+
+          // 福袋
+          const mochikinchaku =
+            $(`<img src="image/mochikinchaku.png" 
+          class="mochikinchaku food" style="top: ${top}; left: ${left}; width: 90px;height: auto;
+          transform: rotate(${deg});">`);
+
+          // 高麗菜
+          const cabbage =
+            $(`<img src="image/cabbage.png" 
+          class="cabbage food" style="top: ${top}; left: ${left}; width: 90px;height: auto;
+          transform: rotate(${deg});">`);
+
+          // 玉米
+          const corn =
+            $(`<img src="image/corn_wagiri.png" 
+          class="corn food" style="top: ${top}; left: ${left}; width: 70px;height: auto;
+          transform: rotate(${deg});">`);
+
+          // 青江菜
+          const komatsuna =
+            $(`<img src="image/komatsuna.png" 
+          class="komatsuna food" style="top: ${top}; left: ${left}; width: 90px;height: auto;
+          transform: rotate(${deg});">`);
+
+          // 豬肉片
+          const pork =
+            $(`<img src="image/pork.png" 
+          class="pork food" style="top: ${top}; left: ${left}; width: 90px;height: auto;
+          transform: rotate(${deg});">`);
+
+          // 牛肉片
+          const beef =
+            $(`<img src="image/beef.png" 
+          class="beef food" style="top: ${top}; left: ${left}; width: 90px;height: auto;
           transform: rotate(${deg});">`);
 
 
-
-          $('#game-window').append(tomato, daikon, ebi, atsuage, chikuwa, shitake);
-          move(tomato, daikon, ebi, atsuage, chikuwa, shitake);
+          $('#game-window').append(tomato, daikon, ebi, atsuage, chikuwa, shitake, ika, mochikinchaku, cabbage, corn, komatsuna, pork, beef);
+          move(tomato);
+          move(daikon);
+          move(ebi);
+          move(atsuage);
+          move(chikuwa);
+          move(shitake);
+          move(ika);
+          move(mochikinchaku);
+          move(cabbage);
+          move(corn);
+          move(komatsuna);
+          move(pork);
+          move(beef);
         }
-
-
 
 
         // 如果時間到了----------------------------------------------
@@ -161,6 +211,7 @@
           $('#game-window').empty()
           // $('btn-start', 'btn-Instructions').show()
 
+
           Swal.fire({
             title: "時間到",
             text: `獲得 ${score} 卡洛里`,
@@ -170,13 +221,28 @@
             imageAlt: "嗨",
             allowOutsideClick: false,
             // 不允許點擊外面關閉對話框
+            confirmButtonText: "再玩一次",
+
           }).then(function (result) {
             hs.score = score
             $('#text-hsscore').text(hs.score)
 
-            // localStorage.setItem(名稱, 文字)
             // localStorage.名稱 = 文字
             localStorage.hs = JSON.stringify(hs)
+
+            // 重新啟用按鈕
+            $('#btn-start').attr('disabled', false);
+            $('#btn-Instructions').attr('disabled', false);
+
+            // 顯示按鈕
+            $('#btn-start').show();
+            $('#btn-Instructions').show();
+
+            // 清空遊戲區域
+            $('#game-window').empty();
+
+            // 重新整理網頁
+            location.reload();
           })
         }
       }, 1000)
@@ -184,43 +250,132 @@
 
     // 點擊----------------------------------------------
 
+
+    // 點擊後停止動作 + 分數
+    // 番茄
     $('#game-window').on('click', '.tomato', function () {
       $(this).stop()
       // $(this).attr('src', './image/ebi_aka.png')
-      $(this).removeClass('food').addClass('clicked')
-      score++
+      $(this).removeClass('tomato').addClass('clicked')
+      score += 5
       $('#text-score').text(score)
     })
 
-    // 點擊後停止動作 + 分數
-    $('#game-window').on('click', '.food', function () {
+    // 蘿蔔
+    $('#game-window').on('click', '.daikon', function () {
       $(this).stop()
-      // $(this).attr('src', './image/ebi_aka.png')
-      $(this).removeClass('food').addClass('clicked')
-      score++
+      $(this).removeClass('daikon').addClass('clicked')
+      score += 10
+      $('#text-score').text(score)
+    })
+
+    // 蝦子
+    $('#game-window').on('click', '.ebi', function () {
+      $(this).stop()
+      $(this).removeClass('ebi').addClass('clicked')
+      score += 12
+      $('#text-score').text(score)
+    })
+
+    // 油豆腐
+    $('#game-window').on('click', '.atsuage', function () {
+      $(this).stop()
+      $(this).removeClass('atsuage').addClass('clicked')
+      score += 12
+      $('#text-score').text(score)
+    })
+
+    // 竹輪
+    $('#game-window').on('click', '.chikuwa', function () {
+      $(this).stop()
+      $(this).removeClass('chikuwa').addClass('clicked')
+      score += 12
+      $('#text-score').text(score)
+    })
+
+    // 香菇
+    $('#game-window').on('click', '.shitake', function () {
+      $(this).stop()
+      $(this).removeClass('shitake').addClass('clicked')
+      score += 12
+      $('#text-score').text(score)
+    })
+
+    // 魷魚圈
+    $('#game-window').on('click', '.ika', function () {
+      $(this).stop()
+      $(this).removeClass('ika').addClass('clicked')
+      score += 12
+      $('#text-score').text(score)
+    })
+
+    // 福袋
+    $('#game-window').on('click', '.mochikinchaku', function () {
+      $(this).stop()
+      $(this).removeClass('mochikinchaku').addClass('clicked')
+      score += 12
+      $('#text-score').text(score)
+    })
+
+    // 高麗菜
+    $('#game-window').on('click', '.cabbage', function () {
+      $(this).stop()
+      $(this).removeClass('cabbage').addClass('clicked')
+      score += 12
+      $('#text-score').text(score)
+    })
+
+    // 玉米
+    $('#game-window').on('click', '.corn', function () {
+      $(this).stop()
+      $(this).removeClass('corn').addClass('clicked')
+      score += 12
+      $('#text-score').text(score)
+    })
+
+    // 青江菜
+    $('#game-window').on('click', '.komatsuna', function () {
+      $(this).stop()
+      $(this).removeClass('komatsuna').addClass('clicked')
+      score += 12
+      $('#text-score').text(score)
+    })
+
+    // 豬肉片
+    $('#game-window').on('click', '.pork', function () {
+      $(this).stop()
+      $(this).removeClass('pork').addClass('clicked')
+      score += 12
+      $('#text-score').text(score)
+    })
+
+    // 牛肉片
+    $('#game-window').on('click', '.beef', function () {
+      $(this).stop()
+      $(this).removeClass('beef').addClass('clicked')
+      score += 12
       $('#text-score').text(score)
     })
 
 
-
-
-
-    // $('#game-window').on('click', '.tomato', function () {
-    //   $(this).stop()
-    //   // $(this).attr('src', './image/ebi_aka.png')
-    //   $(this).removeClass('food').addClass('clicked')
-    //   score++
-    //   $('#text-score').text(score)
-    // })
-
-    function move(tomato) {
-      // 隨機位置
+    // 隨機位置-------------------------------------------
+    function move(food) {
       const top = Math.round(Math.random() * 100) + '%'
       const left = Math.round(Math.random() * 100) + '%'
-      tomato.animate({ top, left }, 2000, function () {
-        move(tomato)
+      food.animate({ top, left }, 1000, function () {
+        move(food)
       })
     }
+
+
+
+    // function move(tomato) {
+    //   const top = Math.round(Math.random() * 100) + '%'
+    //   const left = Math.round(Math.random() * 100) + '%'
+    //   tomato.animate({ top, left }, 2000, function () {
+    //     move(tomato)
+    //   })
+    // }
   </script>
 </body>
 

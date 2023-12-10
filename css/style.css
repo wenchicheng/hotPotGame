@@ -11,6 +11,8 @@
 body {
   background-color: black;
   font-family: 'Noto Sans TC', sans-serif;
+  cursor: url(../image/cooking_yugiri_tebo.png)35 70, auto;
+  /* 座標偏移 35 70  備用預設樣式 auto */
 }
 
 .container {
@@ -47,6 +49,7 @@ body {
   /* background-color: rgb(21, 0, 255); */
   display: flex;
   justify-content: flex-start;
+  background-image: url(../image/hotpot.svg);
 }
 
 .logo {
@@ -68,27 +71,33 @@ body {
   background-color: lightcoral;
 }
 
+
+
 #game-window {
-  width: 100%;
-  height: 100%;
+  width: 600px;
+  height: 600px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   overflow: hidden;
   position: relative;
-  background-image: url(../image/hotpot.svg);
-  cursor: url(../image/cooking_yugiri_tebo.png)35 70, auto;
-  /* 座標 35 70  自動切換樣式 auto */
+
+  outline: 1px solid #333;
+  border-radius: 50%;
+  top: 50px;
+  left: 75px;
+
+  /* 不能選取 */
+  user-select: none;
+  /* 不能拖曳 */
+  -webkit-user-drag: none;
 }
 
 #game-window>img {
   height: 100px;
   position: absolute;
-  /* 不能選取 */
-  user-select: none;
-  /* 不能拖曳 */
-  -webkit-user-drag: none;
+
 }
 
 #btn-start,
@@ -103,5 +112,5 @@ body {
 .clicked {
   /* 忽略點擊事件 */
   pointer-events: none;
-  opacity: 10%;
+  opacity: 0%;
 }
