@@ -98,3 +98,19 @@ body {
   /* 忽略點擊事件 */
   pointer-events: none;
 }
+
+/* 表格------------------------ */
+
+.calList table{
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+  table-layout: fixed;
+
+}
+
+.calList td{
+  border: 1px solid #000;
+  text-align: center;
+  width: 6%;
+}

@@ -18,7 +18,59 @@
         <!-- ＬＯＧＯ------------------- -->
         <div class="logo"></div>
         <!-- 卡洛里表------------------- -->
-        <div class="calList"></div>
+        <div class="calList">
+          <table>
+            <tr>
+              <th>品項</th>
+              <th>熱量</th>
+              <th>品項</th>
+              <th>熱量</th>
+            </tr>
+            <tr>
+              <td><img width="40%" src="./image/pork.png">豬肉片</td>
+              <td>1</td>
+              <td><img width="40%" src="./image/beef.png">牛肉片</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td><img width="40%" src="./image/cabbage.png">高麗菜</td>
+              <td>1</td>
+              <td><img width="40%" src="./image/komatsuna.png">青江菜</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td><img width="40%" src="./image/corn_wagiri.png">玉米塊</td>
+              <td>1</td>
+              <td><img width="40%" src="./image/daikon.png">白蘿蔔</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td><img width="40%" src="./image/ebi.png">蝦子</td>
+              <td>1</td>
+              <td><img width="40%" src="./image/ika_ring.png">魷魚圈</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td><img width="40%" src="./image/atsuage.png">油豆腐</td>
+              <td>1</td>
+              <td><img width="40%" src="./image/chikuwa.png">竹輪</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td><img width="40%" src="./image/shitake.png">香菇</td>
+              <td>1</td>
+              <td><img width="40%" src="./image/egg_pitan.png">皮蛋</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td><img width="40%" src="./image/mochikinchaku.png">福袋</td>
+              <td>1</td>
+              <td><img width="40%" src="./image/tomato_red.png"></td>
+              <td>1</td>
+            </tr>
+
+          </table>
+        </div>
         <!-- 表尾------------------- -->
         <div class="footer">
           <p>分數: <span id="text-score">0</span></p>
@@ -95,7 +147,7 @@
 
 
         // 產生火鍋料----------------------------------------
-        // 隨機數字 1~10 ，如果隨機數字大於 3 且番茄的數量小於 3
+        // 隨機數字 1~10 ，如果隨機數字大於 3 且食材的數量小於 3
         const random = Math.ceil(Math.random() * 10)
         if (random > 3 && $('.food').length < 10) {
 
