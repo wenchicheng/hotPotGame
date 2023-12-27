@@ -27,46 +27,60 @@
               <th>熱量</th>
             </tr>
             <tr>
-              <td><img width="40%" src="./image/pork.png">豬肉片</td>
-              <td>1</td>
-              <td><img width="40%" src="./image/beef.png">牛肉片</td>
-              <td>1</td>
+              <!-- 豬肉片 -->
+              <td><img width="40%" src="./image/pork.png"></td>
+              <td>180</td>
+              <!-- 牛肉片 -->
+              <td><img width="40%" src="./image/beef.png"></td>
+              <td>120</td>
             </tr>
             <tr>
-              <td><img width="40%" src="./image/cabbage.png">高麗菜</td>
-              <td>1</td>
-              <td><img width="40%" src="./image/komatsuna.png">青江菜</td>
-              <td>1</td>
+              <!-- 高麗菜 -->
+              <td><img width="40%" src="./image/cabbage.png"></td>
+              <td>23</td>
+              <!-- 青江菜 -->
+              <td><img width="40%" src="./image/komatsuna.png"></td>
+              <td>10</td>
             </tr>
             <tr>
-              <td><img width="40%" src="./image/corn_wagiri.png">玉米塊</td>
-              <td>1</td>
-              <td><img width="40%" src="./image/daikon.png">白蘿蔔</td>
-              <td>1</td>
+              <!-- 玉米塊 -->
+              <td><img width="40%" src="./image/corn_wagiri.png"></td>
+              <td>40</td>
+              <!-- 白蘿蔔 -->
+              <td><img width="40%" src="./image/daikon.png"></td>
+              <td>8</td>
             </tr>
             <tr>
-              <td><img width="40%" src="./image/ebi.png">蝦子</td>
-              <td>1</td>
-              <td><img width="40%" src="./image/ika_ring.png">魷魚圈</td>
-              <td>1</td>
+              <!-- 蝦子 -->
+              <td><img width="40%" src="./image/ebi.png"></td>
+              <td>20</td>
+              <!-- 魷魚圈 -->
+              <td><img width="40%" src="./image/ika_ring.png"></td>
+              <td>10</td>
             </tr>
             <tr>
-              <td><img width="40%" src="./image/atsuage.png">油豆腐</td>
-              <td>1</td>
-              <td><img width="40%" src="./image/chikuwa.png">竹輪</td>
-              <td>1</td>
+              <!-- 油豆腐 -->
+              <td><img width="40%" src="./image/atsuage.png"></td>
+              <td>110</td>
+              <!-- 竹輪 -->
+              <td><img width="40%" src="./image/chikuwa.png"></td>
+              <td>50</td>
             </tr>
             <tr>
-              <td><img width="40%" src="./image/shitake.png">香菇</td>
-              <td>1</td>
-              <td><img width="40%" src="./image/egg_pitan.png">皮蛋</td>
-              <td>1</td>
+              <!-- 香菇 -->
+              <td><img width="40%" src="./image/shitake.png"></td>
+              <td>3</td>
+              <!-- 皮蛋 -->
+              <td><img width="40%" src="./image/egg_pitan.png"></td>
+              <td>120</td>
             </tr>
             <tr>
-              <td><img width="40%" src="./image/mochikinchaku.png">福袋</td>
-              <td>1</td>
+              <!-- 福袋 -->
+              <td><img width="40%" src="./image/mochikinchaku.png"></td>
+              <td>88</td>
+              <!-- 番茄 -->
               <td><img width="40%" src="./image/tomato_red.png"></td>
-              <td>1</td>
+              <td>18</td>
             </tr>
 
           </table>
@@ -138,7 +152,10 @@
       $('#text-time').text(time)
       // 因為 setInterval 裡的 this 會指向 window，而不是點到的按鈕，所以先把 this 存起來
       const _this = this
-      // 開始遊戲
+
+
+
+      // 開始遊戲--------------------------------------------------
 
       timer = setInterval(function () {
         // 倒數
@@ -302,7 +319,8 @@
       //  產生食材的秒數
     })
 
-    // 點擊----------------------------------------------
+
+    // 點擊-------------------------------------------------------
 
     // 點擊後停止動作 + 分數
     // 番茄
@@ -310,7 +328,7 @@
       $(this).stop()
       // $(this).attr('src', './image/ebi_aka.png')
       $(this).removeClass('tomato').addClass('clicked')
-      score += 5
+      score += 18
       $('#text-score').text(score)
     })
 
@@ -318,7 +336,7 @@
     $('#game-window').on('click', '.daikon', function () {
       $(this).stop()
       $(this).removeClass('daikon').addClass('clicked')
-      score += 10
+      score += 8
       $('#text-score').text(score)
     })
 
@@ -326,7 +344,7 @@
     $('#game-window').on('click', '.ebi', function () {
       $(this).stop()
       $(this).removeClass('ebi').addClass('clicked')
-      score += 12
+      score += 20
       $('#text-score').text(score)
     })
 
@@ -334,7 +352,7 @@
     $('#game-window').on('click', '.atsuage', function () {
       $(this).stop()
       $(this).removeClass('atsuage').addClass('clicked')
-      score += 12
+      score += 100
       $('#text-score').text(score)
     })
 
@@ -342,7 +360,7 @@
     $('#game-window').on('click', '.chikuwa', function () {
       $(this).stop()
       $(this).removeClass('chikuwa').addClass('clicked')
-      score += 12
+      score += 50
       $('#text-score').text(score)
     })
 
@@ -350,7 +368,7 @@
     $('#game-window').on('click', '.shitake', function () {
       $(this).stop()
       $(this).removeClass('shitake').addClass('clicked')
-      score += 12
+      score += 3
       $('#text-score').text(score)
     })
 
@@ -358,7 +376,7 @@
     $('#game-window').on('click', '.ika', function () {
       $(this).stop()
       $(this).removeClass('ika').addClass('clicked')
-      score += 12
+      score += 10
       $('#text-score').text(score)
     })
 
@@ -366,7 +384,7 @@
     $('#game-window').on('click', '.mochikinchaku', function () {
       $(this).stop()
       $(this).removeClass('mochikinchaku').addClass('clicked')
-      score += 12
+      score += 88
       $('#text-score').text(score)
     })
 
@@ -374,7 +392,7 @@
     $('#game-window').on('click', '.cabbage', function () {
       $(this).stop()
       $(this).removeClass('cabbage').addClass('clicked')
-      score += 12
+      score += 23 // 100g
       $('#text-score').text(score)
     })
 
@@ -382,7 +400,7 @@
     $('#game-window').on('click', '.corn', function () {
       $(this).stop()
       $(this).removeClass('corn').addClass('clicked')
-      score += 12
+      score += 40
       $('#text-score').text(score)
     })
 
@@ -390,7 +408,7 @@
     $('#game-window').on('click', '.komatsuna', function () {
       $(this).stop()
       $(this).removeClass('komatsuna').addClass('clicked')
-      score += 12
+      score += 10 // 100g
       $('#text-score').text(score)
     })
 
@@ -398,7 +416,7 @@
     $('#game-window').on('click', '.pork', function () {
       $(this).stop()
       $(this).removeClass('pork').addClass('clicked')
-      score += 12
+      score += 180 // 100g
       $('#text-score').text(score)
     })
 
@@ -406,7 +424,7 @@
     $('#game-window').on('click', '.beef', function () {
       $(this).stop()
       $(this).removeClass('beef').addClass('clicked')
-      score += 12
+      score += 120 // 100g
       $('#text-score').text(score)
     })
 
