@@ -12,11 +12,17 @@
 
 <body>
   <div class="container">
+
     <div class="window">
       <!-- 左區------------------- -->
       <div class="left">
         <!-- ＬＯＧＯ------------------- -->
         <div class="logo"></div>
+        <!-- 熱量 -->
+        <div class="totalCal">
+          <div>熱量： <span id="text-score">0</span>大卡</div>
+          <div>剩餘： <span id="text-time">0</span>秒</div>
+        </div>
         <!-- 卡洛里表------------------- -->
         <div class="calList">
           <table>
@@ -87,10 +93,8 @@
         </div>
         <!-- 表尾------------------- -->
         <div class="footer">
-          <p>分數: <span id="text-score">0</span></p>
-          <p>剩餘: <span id="text-time">0</span>秒</p>
           <!-- <p>最高分玩家: <span id="text-hsname">-</span></p> -->
-          <p>最高分分數: <span id="text-hsscore">0</span></p>
+          <div>最高分大胃王： <span id="text-hsscore">0</span> 大卡</div>
         </div>
       </div>
       <!-- 右區------------------- -->
@@ -114,6 +118,14 @@
     crossorigin='anonymous'></script>
 
   <script>
+
+    // 開始遊戲按鈕
+    $('#startButton').on('click', function () {
+      $('#startScreen').hide();
+      // $('.window').show();
+    });
+
+
     // 目前分數
     let score = 0
     // 剩餘秒數
@@ -166,7 +178,7 @@
         // 產生火鍋料----------------------------------------
         // 隨機數字 1~10 ，如果隨機數字大於 3 且食材的數量小於 3
         const random = Math.ceil(Math.random() * 10)
-        if (random > 3 && $('.food').length < 10) {
+        if (random > 3 && $('.food').length < 15) {
 
           // 隨機位置
           const top = Math.round(Math.random() * 50) + '%'
@@ -327,7 +339,7 @@
     $('#game-window').on('click', '.tomato', function () {
       $(this).stop()
       // $(this).attr('src', './image/ebi_aka.png')
-      $(this).removeClass('tomato').addClass('clicked')
+      $(this).removeClass('tomato food').addClass('clicked')
       score += 18
       $('#text-score').text(score)
     })
@@ -335,7 +347,7 @@
     // 蘿蔔
     $('#game-window').on('click', '.daikon', function () {
       $(this).stop()
-      $(this).removeClass('daikon').addClass('clicked')
+      $(this).removeClass('daikon food').addClass('clicked')
       score += 8
       $('#text-score').text(score)
     })
@@ -343,7 +355,7 @@
     // 蝦子
     $('#game-window').on('click', '.ebi', function () {
       $(this).stop()
-      $(this).removeClass('ebi').addClass('clicked')
+      $(this).removeClass('ebi food').addClass('clicked')
       score += 20
       $('#text-score').text(score)
     })
@@ -351,7 +363,7 @@
     // 油豆腐
     $('#game-window').on('click', '.atsuage', function () {
       $(this).stop()
-      $(this).removeClass('atsuage').addClass('clicked')
+      $(this).removeClass('atsuage food').addClass('clicked')
       score += 100
       $('#text-score').text(score)
     })
@@ -359,7 +371,7 @@
     // 竹輪
     $('#game-window').on('click', '.chikuwa', function () {
       $(this).stop()
-      $(this).removeClass('chikuwa').addClass('clicked')
+      $(this).removeClass('chikuwa food').addClass('clicked')
       score += 50
       $('#text-score').text(score)
     })
@@ -367,7 +379,7 @@
     // 香菇
     $('#game-window').on('click', '.shitake', function () {
       $(this).stop()
-      $(this).removeClass('shitake').addClass('clicked')
+      $(this).removeClass('shitake food').addClass('clicked')
       score += 3
       $('#text-score').text(score)
     })
@@ -375,7 +387,7 @@
     // 魷魚圈
     $('#game-window').on('click', '.ika', function () {
       $(this).stop()
-      $(this).removeClass('ika').addClass('clicked')
+      $(this).removeClass('ika food').addClass('clicked')
       score += 10
       $('#text-score').text(score)
     })
@@ -383,7 +395,7 @@
     // 福袋
     $('#game-window').on('click', '.mochikinchaku', function () {
       $(this).stop()
-      $(this).removeClass('mochikinchaku').addClass('clicked')
+      $(this).removeClass('mochikinchaku food').addClass('clicked')
       score += 88
       $('#text-score').text(score)
     })
@@ -391,7 +403,7 @@
     // 高麗菜
     $('#game-window').on('click', '.cabbage', function () {
       $(this).stop()
-      $(this).removeClass('cabbage').addClass('clicked')
+      $(this).removeClass('cabbage food').addClass('clicked')
       score += 23 // 100g
       $('#text-score').text(score)
     })
@@ -399,7 +411,7 @@
     // 玉米
     $('#game-window').on('click', '.corn', function () {
       $(this).stop()
-      $(this).removeClass('corn').addClass('clicked')
+      $(this).removeClass('corn food').addClass('clicked')
       score += 40
       $('#text-score').text(score)
     })
@@ -407,7 +419,7 @@
     // 青江菜
     $('#game-window').on('click', '.komatsuna', function () {
       $(this).stop()
-      $(this).removeClass('komatsuna').addClass('clicked')
+      $(this).removeClass('komatsuna food').addClass('clicked')
       score += 10 // 100g
       $('#text-score').text(score)
     })
@@ -415,7 +427,7 @@
     // 豬肉片
     $('#game-window').on('click', '.pork', function () {
       $(this).stop()
-      $(this).removeClass('pork').addClass('clicked')
+      $(this).removeClass('pork food').addClass('clicked')
       score += 180 // 100g
       $('#text-score').text(score)
     })
@@ -423,7 +435,7 @@
     // 牛肉片
     $('#game-window').on('click', '.beef', function () {
       $(this).stop()
-      $(this).removeClass('beef').addClass('clicked')
+      $(this).removeClass('beef food').addClass('clicked')
       score += 120 // 100g
       $('#text-score').text(score)
     })
