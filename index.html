@@ -17,7 +17,7 @@
       <div class="intro">
         <div class="logo" style="margin: auto; scale: 0.7;"></div>
         - 玩 法 說 明 -<br>
-        在 20 秒內，玩家需快速蒐集各種不同熱量食材，火鍋料將會再隨機加到湯底中<br>
+        在 30 秒內，玩家需快速蒐集各種不同熱量食材，火鍋料將會再隨機加到湯底中<br>
         贏得更多熱量讓自己成為「 最佳大胃王 」！
         <br>享受火鍋美味的同時，別忘了留意倒數計時，等你來挑戰！！<br>
         <div style="font-size: 1rem;color: #ad977d; margin-bottom: 8px;">目前最高熱量紀錄： <span id="text-hsscore">0</span> 大卡
@@ -249,7 +249,7 @@
       // 重設
       score = 0
       $('#text-score').text(score)
-      time = 20
+      time = 30
       $('#text-time').text(time)
       // 因為 setInterval 裡的 this 會指向 window，而不是點到的按鈕，所以先把 this 存起來
       const _this = this
