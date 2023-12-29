@@ -13,6 +13,95 @@
 <body>
   <div class="container">
 
+    <div id="startScreen">
+      <div class="intro">
+        <div class="logo" style="margin: auto; scale: 0.7;"></div>
+        - 玩 法 說 明 -<br>
+        在 20 秒內，玩家需快速蒐集各種不同熱量食材，火鍋料將會再隨機加到湯底中<br>
+        贏得更多熱量讓自己成為「 最佳大胃王 」！
+        <br>享受火鍋美味的同時，別忘了留意倒數計時，等你來挑戰！！<br>
+        <div style="font-size: 1rem;color: #ad977d; margin-bottom: 8px;">目前最高熱量紀錄： <span id="text-hsscore">0</span> 大卡
+        </div>
+        <div class="listTitle">熱 量 表</div>
+        <div class="listIntro">
+          <div class="calListIntro">
+            <table>
+              <!-- 品項、熱量 -->
+              <tr>
+                <td>品項</td>
+                <td>豬肉片</td>
+                <td>牛肉片</td>
+                <td>高麗菜</td>
+                <td>青江菜</td>
+                <td>玉米塊</td>
+                <td>白蘿蔔</td>
+                <td>番茄</td>
+                <td>蝦子</td>
+                <td>魷魚圈</td>
+                <td>油豆腐</td>
+                <td>竹輪</td>
+                <td>香菇</td>
+                <td>皮蛋</td>
+                <td>福袋</td>
+              </tr>
+              <tr>
+                <td>食材</td>
+                <!-- 豬肉片 -->
+                <td><img src="./image/pork.png"></td>
+                <!-- 牛肉片 -->
+                <td><img src="./image/beef.png"></td>
+                <!-- 高麗菜 -->
+                <td><img src="./image/cabbage.png"></td>
+                <!-- 青江菜 -->
+                <td><img src="./image/komatsuna.png"></td>
+                <!-- 玉米塊 -->
+                <td><img src="./image/corn_wagiri.png"></td>
+                <!-- 白蘿蔔 -->
+                <td><img src="./image/daikon.png"></td>
+                <!-- 番茄 -->
+                <td><img src="./image/tomato_red.png"></td>
+                <!-- 蝦子 -->
+                <td><img src="./image/ebi.png"></td>
+                <!-- 魷魚圈 -->
+                <td><img src="./image/ika_ring.png"></td>
+                <!-- 油豆腐 -->
+                <td><img src="./image/atsuage.png"></td>
+                <!-- 竹輪 -->
+                <td><img src="./image/chikuwa.png"></td>
+                <!-- 香菇 -->
+                <td><img src="./image/shitake.png"></td>
+                <!-- 皮蛋 -->
+                <td><img src="./image/egg_pitan.png"></td>
+                <!-- 福袋 -->
+                <td><img src="./image/mochikinchaku.png"></td>
+              </tr>
+              <tr>
+                <td>熱量</td>
+                <td>180</td>
+                <td>120</td>
+                <td>23</td>
+                <td>10</td>
+                <td>40</td>
+                <td>8</td>
+                <td>18</td>
+                <td>20</td>
+                <td>10</td>
+                <td>110</td>
+                <td>50</td>
+                <td>3</td>
+                <td>120</td>
+                <td>88</td>
+              </tr>
+
+            </table>
+          </div>
+        </div>
+        <div>
+          <button id="startButton"><span>開始撈！</span><span>準備好了嗎？</span></button>
+        </div>
+      </div>
+    </div>
+
     <div class="window">
       <!-- 左區------------------- -->
       <div class="left">
@@ -94,7 +183,7 @@
         <!-- 表尾------------------- -->
         <div class="footer">
           <!-- <p>最高分玩家: <span id="text-hsname">-</span></p> -->
-          <div>最高分大胃王： <span id="text-hsscore">0</span> 大卡</div>
+          <div>目前最高熱量紀錄： <span id="text-hsscore">0</span> 大卡</div>
         </div>
       </div>
       <!-- 右區------------------- -->
@@ -102,8 +191,8 @@
         <!-- 右區遊戲主畫面------------------- -->
         <div id="game-window">
           <!-- <img id="" src="./image/hotpot.svg"> -->
-          <input type="button" value="開始" id="btn-start">
-          <input type="button" value="說明" id="btn-Instructions">
+          <!-- <input type="button" value="開始" id="btn-start">
+          <input type="button" value="說明" id="btn-Instructions"> -->
         </div>
       </div>
     </div>
@@ -149,7 +238,7 @@
 
     // 點擊開始----------------------------------------------
 
-    $('#btn-start').click(function () {
+    $('#startButton').click(function () {
       // 停用按鈕
       $(this).attr('disabled', true);
       $('#btn-Instructions').attr('disabled', true);
@@ -160,7 +249,7 @@
       // 重設
       score = 0
       $('#text-score').text(score)
-      time = 60
+      time = 20
       $('#text-time').text(time)
       // 因為 setInterval 裡的 this 會指向 window，而不是點到的按鈕，所以先把 this 存起來
       const _this = this
@@ -294,9 +383,22 @@
           // $('btn-start', 'btn-Instructions').show()
 
 
+          function getScoreMessage(score) {
+            if (score > 1500) {
+              return `太厲害啦！獲得 ${score} 大卡，最強大胃王非你莫屬！`;
+            } else if (score > 1200) {
+              return `獲得 ${score} 大卡，隱藏大胃王是你！`;
+            } else if (score > 700) {
+              return `獲得 ${score} 大卡，撈得太客氣了吧~~`;
+            } else {
+              return `獲得 ${score} 大卡，是在飲食控制？ ^_^`;
+            }
+          }
+
+
           Swal.fire({
-            title: "時間到",
-            text: `獲得 ${score} 卡洛里`,
+            title: "時間到！",
+            text: getScoreMessage(score),
             imageUrl: "./image/soup_vegetable.png",
             imageWidth: 400,
             imageHeight: 361,
@@ -312,20 +414,13 @@
             // localStorage.名稱 = 文字
             localStorage.hs = JSON.stringify(hs)
 
-            // 重新啟用按鈕
-            $('#btn-start').attr('disabled', false);
-            $('#btn-Instructions').attr('disabled', false);
-
-            // 顯示按鈕
-            $('#btn-start').show();
-            $('#btn-Instructions').show();
-
             // 清空遊戲區域
             $('#game-window').empty();
 
             // 重新整理網頁
             location.reload();
           })
+
         }
       }, 1000)
       //  產生食材的秒數
